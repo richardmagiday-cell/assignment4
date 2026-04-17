@@ -1,5 +1,6 @@
 package assignment4;
 
+import java.io.File;
 import java.util.Scanner;
 
 /*
@@ -26,8 +27,10 @@ public class LinkedListTester {
             fileName = input.next();
         }
 
-        // Output file is "processed" + input file name
-        String outputFileName = "processed" + fileName;
+        // Prepend "processed" to just the filename, keeping the directory if any
+        File inputFile = new File(fileName);
+        String dir = inputFile.getParent();
+        String outputFileName = (dir != null ? dir + File.separator : "") + "processed" + inputFile.getName();
 
         LinkedList list = new LinkedList();
         list.construct(fileName);
